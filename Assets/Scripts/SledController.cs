@@ -263,9 +263,11 @@ public class SledController : MonoBehaviour
     {
         ActiveSpline = _snapSpline;
         _t           = _snapT;
-        // CurrentSpeed already set in BeginReattach — don't overwrite it
         _bank        = 0f;
         CurrentState = State.OnTrack;
+
+        // Snap mesh back if a trick was mid-way
+        GetComponent<TrickController>()?.OnLanded();
 
         Debug.Log($"[Sled] OnTrack → {ActiveSpline.name}  " +
                 $"spd={CurrentSpeed:F1}  lateralOffset={_lateralOffset:F2}");
