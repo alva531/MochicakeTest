@@ -87,7 +87,7 @@ namespace Unity.Splines.Examples
                     return m_Mesh;
 
                 m_Mesh = new Mesh();
-                GetComponent<MeshRenderer>().sharedMaterial = Resources.Load<Material>("Snow_Material");
+                //GetComponent<MeshRenderer>().sharedMaterial = Resources.Load<Material>("Snow_Material");
                 return m_Mesh;
             }
         }

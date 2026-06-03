@@ -52,6 +52,8 @@ public class SledController : MonoBehaviour
     public float           CurrentSpeed { get; private set; }
     public SplineContainer ActiveSpline { get; private set; }
 
+    public SplineContainer LastSpline { get; private set; }
+
     // ───────────────────────────────────────────────── Private ──────────────
     Rigidbody _rb;
     float     _t;
@@ -228,8 +230,9 @@ public class SledController : MonoBehaviour
     void Detach(Vector3 launchVelocity)
     {
         SetKinematic(false);
-        _rb.velocity = launchVelocity;
-        CurrentState = State.Airborne;
+        _rb.velocity           = launchVelocity;
+        _reattachCooldownTimer = jumpReattachCooldown;  // ← add this line
+        CurrentState           = State.Airborne;
         Debug.Log($"[Sled] Cliff detach → Airborne  {launchVelocity.magnitude:F1} m/s");
     }
 
@@ -312,15 +315,13 @@ public class SledController : MonoBehaviour
     {
         if (CurrentState != State.OnTrack) return;
 
-        ActiveSpline.Spline.Evaluate(_t,
-            out _, out float3 localTan, out float3 localUp);
-        Vector3 wTan = ActiveSpline.transform
-            .TransformDirection((Vector3)localTan).normalized;
-        Vector3 wUp  = ActiveSpline.transform
-            .TransformDirection((Vector3)localUp).normalized;
+        LastSpline = ActiveSpline;
+
+        ActiveSpline.Spline.Evaluate(_t, out _, out float3 localTan, out float3 localUp);
+        Vector3 wTan = ActiveSpline.transform.TransformDirection((Vector3)localTan).normalized;
+        Vector3 wUp  = ActiveSpline.transform.TransformDirection((Vector3)localUp).normalized;
 
         Detach(wTan * CurrentSpeed + wUp * upBoost);
-        _reattachCooldownTimer = jumpReattachCooldown;
     }
 
     // ───────────────────────────────────────────────── Gizmos ───────────────

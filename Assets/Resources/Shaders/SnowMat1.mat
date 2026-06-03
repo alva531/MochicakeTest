@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SnowMat1
+  m_Shader: {fileID: 4800000, guid: 226b031cf71b0394aa68f00c3630f543, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _TrailTex:
+        m_Texture: {fileID: 8400000, guid: 2c8be8d0d2f8c294ba521909095e061f, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _DeformDepth: 0.35
+    - _NormalStrength: 8
+    - _SnowHeight: 0.15
+    - _TessFactor: 16
+    - _TessMaxDistance: 25
+    m_Colors:
+    - _AmbientColor: {r: 0.17999998, g: 0.21999997, b: 0.29999998, a: 1}
+    - _SnowColor: {r: 0.93, g: 0.96, b: 1, a: 1}
+    - _TrailColor: {r: 0.5, g: 0.68, b: 0.8, a: 1}
+  m_BuildTextureStacks: []
